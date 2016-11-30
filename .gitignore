@@ -1,0 +1,4 @@
+/.idea/
+/profiles/*.json
+!/profiles/example.json
+!/profiles/example*.json
