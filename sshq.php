@@ -6,7 +6,10 @@ if (!isset($argv) || empty($argv) || !isset($argv[1]) || !file_exists('profiles/
 $config = json_decode(file_get_contents('profiles/' . $argv[1] . '.json'));
 
 $command = [];
-$command[] = "ssh";
+
+$command[] = 'ssh';
+
+$command[] = '-o TCPKeepAlive=yes';
 
 if (isset($config->port))
 {
@@ -36,6 +39,6 @@ else
     $command[] = 'localhost ';
 }
 
-$command = implode(" ", $command);
+$command = implode(' ', $command);
 passthru($command);
 die();
