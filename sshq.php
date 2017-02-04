@@ -40,5 +40,11 @@ else
 }
 
 $command = implode(' ', $command);
-passthru($command);
+
+// variant 1: here php process runs and there are timeout/performance issues
+//passthru($command);
+
+// variant 2: create batch file (which gets executed by original bat file)
+file_put_contents('run.bat',"@echo off\n".$command);
+
 die();
