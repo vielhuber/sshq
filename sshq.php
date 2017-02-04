@@ -1,6 +1,7 @@
 <?php
 if (!isset($argv) || empty($argv) || !isset($argv[1]) || !file_exists('profiles/' . $argv[1] . '.json'))
 {
+    @unlink('run.bat');
     die('missing profile');
 }
 $config = json_decode(file_get_contents('profiles/' . $argv[1] . '.json'));

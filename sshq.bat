@@ -8,4 +8,4 @@ php sshq.php %*
 REM change back
 chdir /d %OLDDIR%
 REM run.bat
-%~dp0run.bat
+if exist %~dp0run.bat %~dp0run.bat
