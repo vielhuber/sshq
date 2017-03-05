@@ -12,6 +12,8 @@ $command[] = 'ssh';
 
 $command[] = '-o TCPKeepAlive=yes';
 
+$command[] = '-o StrictHostKeyChecking=no';
+
 if (isset($config->port))
 {
     $command[] = '-p ' . $config->port;
