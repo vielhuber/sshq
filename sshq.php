@@ -2,7 +2,8 @@
 if (!isset($argv) || empty($argv) || !isset($argv[1]) || !file_exists('profiles/' . $argv[1] . '.json'))
 {
     @unlink('run.bat');
-    die('missing profile');
+    @unlink('run.sh');
+    die('missing profile'.PHP_EOL);
 }
 $config = json_decode(file_get_contents('profiles/' . $argv[1] . '.json'));
 
@@ -28,7 +29,7 @@ if (isset($config->username))
     $command[] = '-l ' . $config->username;
 }
 
-if (isset($config->key))
+if (isset($config->key) && strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
 {
     $command[] = '-i ' . $config->key;
 }
@@ -48,6 +49,13 @@ $command = implode(' ', $command);
 //passthru($command);
 
 // variant 2: create batch file (which gets executed by original bat file)
-file_put_contents('run.bat',"@echo off\n".$command);
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+{
+    file_put_contents('run.bat',"@echo off\n".$command);
+}
+else
+{
+    file_put_contents('run.sh',$command);
+}
 
 die();

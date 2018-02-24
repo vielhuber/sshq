@@ -1,0 +1,3 @@
+#!/bin/bash
+php sshq.php "$@"
+[ -f run.sh ] && bash run.sh

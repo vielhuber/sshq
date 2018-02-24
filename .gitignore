@@ -3,3 +3,4 @@
 !/profiles/example.json
 !/profiles/example*.json
 /run.bat
+/run.sh
