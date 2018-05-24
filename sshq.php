@@ -29,7 +29,7 @@ if (isset($config->username))
     $command[] = '-l ' . $config->username;
 }
 
-if (isset($config->key) && strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+if (isset($config->key) && (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' || strtoupper(substr(PHP_OS, 0, 3)) === 'CYG'))
 {
     $command[] = '-i ' . $config->key;
 }
@@ -49,7 +49,7 @@ $command = implode(' ', $command);
 //passthru($command);
 
 // variant 2: create batch file (which gets executed by original bat file)
-if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' || strtoupper(substr(PHP_OS, 0, 3)) === 'CYG')
 {
     file_put_contents('run.bat',"@echo off\n".$command);
 }
